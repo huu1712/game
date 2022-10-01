@@ -668,3 +668,7 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
   opacity: 0;
   transform: translateY(100%);
 }
+
+.active{
+  pointer-events: none;
+}

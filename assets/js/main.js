@@ -132,13 +132,40 @@ Vue.createApp({
                 },
             ].sort(() => Math.random() - 0.5),
             selectCard: [],
-            saveCard: []
+            saveCard: [],
+            gameResult: {
+                win: false,
+                lost: false
+            },
+            gameData: {
+                numberSelect: 6
+            },
+            isActive: false,
         };
+    },
+
+    watch: {
+        'gameData.numberSelect': function (newValue) {
+            if (newValue === 0) {
+                this.gameResult = {
+                    win: false,
+                    lost: true
+                },this.isActive = true
+            }
+        }
     },
     computed: {
         coveredCard() {
             let coveredCard = this.cards.filter(
                 (card) => !this.uncoveredCard.includes(card));
+
+            if (coveredCard.length === 0) {
+                this.gameResult = {
+                    win: true,
+                    lost: false
+                }
+            }
+
             return coveredCard;
         },
         uncoveredCard() {
@@ -154,12 +181,32 @@ Vue.createApp({
                 const [card_1, card_2] = this.selectCard;
                 if (card_1.id === card_2.id) {
                     this.saveCard.push(card_1, card_2)
+                } else {
+                    this.gameData = {
+                        numberSelect: this.gameData.numberSelect - 1
+                    }
                 }
 
                 setTimeout(() => {
                     this.selectCard = [];
-                }, 850)
+                }, 750)
             }
         },
+
+        newGame() {
+            this.cards = this.cards.sort(() => Math.random() - 0.5);
+            this.selectCard = [];
+            this.saveCard = [];
+            this.gameResult = {
+                win: false
+            };
+            this.gameData = {
+                numberSelect: 6
+            }
+            this.isActive= false
+
+
+        }
     },
+
 }).mount("#app")
