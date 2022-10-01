@@ -672,3 +672,12 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 .active{
   pointer-events: none;
 }
+
+@media (max-width: 739px) {
+  .button.button--game{
+    transform: translateY(-50px);
+  }
+
+}
+
+
