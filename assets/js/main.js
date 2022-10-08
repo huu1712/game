@@ -138,7 +138,7 @@ Vue.createApp({
                 lost: false
             },
             gameData: {
-                numberSelect: 6
+                numberSelect: 5
             },
             isActive: false,
         };
@@ -201,7 +201,7 @@ Vue.createApp({
                 win: false
             };
             this.gameData = {
-                numberSelect: 6
+                numberSelect: 5
             }
             this.isActive= false
 
